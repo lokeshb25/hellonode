@@ -5,6 +5,7 @@ FROM node:7-onbuild
 LABEL maintainer "miiro@getintodevops.com"
 
 ## new update commited
+## new update 2
 
 # set a health check
 HEALTHCHECK --interval=5s \
