@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("hellonode")
+        app = docker.build("lokeshb25/hellonode")
     }
 
     stage('Test image') {
@@ -29,9 +29,8 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            git url: "https://github.com/lokeshb25/hellonode.git", credentialsId: 'git-credentials'
-            app.push 'master'
-            app.push "${commit_id}"
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
     }
     
